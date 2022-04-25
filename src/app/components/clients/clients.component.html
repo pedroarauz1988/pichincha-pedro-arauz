@@ -1,0 +1,90 @@
+<h1>Clientes</h1>
+<div *ngIf="isNewClient" style="text-align: left;">
+    <button class="save button" *ngIf="!update" (click)="saveClient()" type="button">Registrar</button>
+    <button class="save button" *ngIf="update" (click)="updateClient()" type="button">Actualizar</button>
+    <button class="canceled button" (click)="close()" type="button" style="margin-left: 1rem;">Cancelar</button>
+</div>
+<div *ngIf="!isNewClient" class="bp-space-between">
+    <input class="bp-input" #searchInput (keydown)="searchClient(searchInput.value)" type="text" placeholder="Buscar">
+    <button class="bp-button button" (click)="createClient()" style="margin-left: 1rem;">Nuevo</button>
+</div>
+<div *ngIf="!isNewClient">
+    <br>
+    <table id="persons">
+        <tr class="header-table">
+            <th>Nombres</th>
+            <th>Género</th>
+            <th>Edad</th>
+            <th>Identificación</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        <tr *ngFor="let client of clients" class="body-table">
+            <td style="padding: 1rem;">{{client.personPresenter?.name}}</td>
+            <td>{{client.personPresenter?.gender}}</td>
+            <td>{{client.personPresenter?.age}}</td>
+            <td>{{client.personPresenter?.identification}}</td>
+            <td>{{client.personPresenter?.address}}</td>
+            <td>{{client.personPresenter?.phone}}</td>
+            <td *ngIf="client.status">ACTIVO</td>
+            <td *ngIf="!client.status">INACTIVO</td>
+            <td>
+                <button (click)="editClient(client)" class="button">Editar</button>
+                <button (click)="deleteClient(client)" class="button" style="margin-left: 1rem;">Eliminar</button>
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<div *ngIf="isNewClient" class="form-client">
+    <form [formGroup]="clientForm" class="form-client">
+        <div class="alignInput">
+            <div >
+                <p>Nombres completos:</p>
+                <input type="text" formControlName="name" placeholder="Nombres completos">
+            </div>
+            <div>
+                <p>Género:</p>
+                <select formControlName="gender">
+                    <option value="FEMENINO">FEMENINO</option>
+                    <option value="MASCULINO">MASCULINO</option>
+                    <option value="MASCULINO">OTRO</option>
+                </select>
+            </div>
+            <div>
+                <p>Edad:</p>
+                <input type="number" formControlName="age" placeholder="Edad">
+            </div>
+        </div>
+        <div class="alignInput">
+            <div>
+                <p>Número de documento:</p>
+                <input type="text" maxlength="13" formControlName="identification" placeholder="Numero de documento">
+            </div>
+        </div>
+        <div class="alignInput">
+            <div>
+                <p>Dirección:</p>
+                <input type="text" formControlName="address" placeholder="Dirección">
+            </div>
+            <div>
+                <p>Teléfono:</p>
+                <input type="number" onwheel="this.blur()" formControlName="phone" placeholder="Teléfono">
+            </div>
+            <div>
+                <p>Contraseña:</p>
+                <input type="text" formControlName="password" placeholder="Contraseña">
+            </div>
+        </div>
+        
+        <div *ngIf="update">
+            <p>Estado:</p>
+            <div style="text-align: left !important;">
+                <input formControlName="status" type="checkbox">
+            </div>
+        </div>
+    </form>
+    <br>
+</div>

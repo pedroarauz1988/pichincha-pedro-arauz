@@ -1,0 +1,50 @@
+.page {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    
+}
+.side {
+    position: relative;
+    width: 20%;
+}
+
+.container {
+    width: 80%;
+}
+/* Sidebar Div */
+div {
+    color: black;
+    width: 250px;
+    padding-left: 20px;
+    height: 100vh;
+    background-image: linear-gradient(30deg, #f5fcf7, #f6faf8);
+  }
+  
+  /* Div header */
+  div h2 {
+    padding: 40px 0 0 0;
+    cursor: pointer;
+  }
+  
+  /* Div links */
+  div a {
+    font-size: 14px;
+    color: black;
+    display: block;
+    padding: 12px;
+    padding-left: 30px;
+    text-decoration: none;
+    outline: none;
+  }
+  
+  /* Div link on hover */
+  div a:hover {
+    color: #e1ff38;
+    background: #fff;
+    position: relative;
+    background-color: #fff;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+  }
